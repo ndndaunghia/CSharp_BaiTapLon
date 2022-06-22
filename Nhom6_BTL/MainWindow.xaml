@@ -1,0 +1,143 @@
+﻿<Window x:Class="Nhom6_BTL.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Nhom6_BTL"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+       
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        mc:Ignorable="d"
+        
+        Title="ỨNG DỤNG TRA CỨU LUẬT" Height="700" Width="900">
+    <Grid>
+
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="766*"/>
+            <RowDefinition Height="19*"/>
+        </Grid.RowDefinitions>
+        <materialDesign:ColorZone
+            
+  Mode="PrimaryLight"
+  Padding="16" Background="#f083da">
+            <DockPanel Margin="0,0,18,0">
+
+                <StackPanel
+      Orientation="Horizontal"
+      materialDesign:RippleAssist.IsCentered="True" Width="763">
+                    <ToggleButton
+        Content="{materialDesign:PackIcon Kind=Heart, Size=21}"
+  Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"
+  ToolTip="MaterialDesignFlatPrimaryToggleButton"
+  IsChecked="True" />
+                    <ComboBox x:Name="cbbox"
+        SelectedIndex="0"
+        Margin="8 0 0 0"
+        BorderThickness="0"
+        materialDesign:ColorZoneAssist.Mode="Standard"
+        materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource MaterialDesignPaper}"
+        BorderBrush="{DynamicResource MaterialDesignPaper}">
+                        <ComboBoxItem
+          Content="DIEU" />
+                        <ComboBoxItem
+          Content="NOIDUNGDIEU" />
+                        <ComboBoxItem
+          Content="KHOAN" />
+                        <ComboBoxItem
+          Content="NOIDUNGKHOAN" />
+                        <ComboBoxItem
+          Content="MUCPHATDUOI" />
+                        <ComboBoxItem
+          Content="MUCPHATTREN" />
+                    </ComboBox>
+                    <materialDesign:ColorZone
+        Mode="Standard"
+        Padding="8 4 8 4"
+        CornerRadius="2"
+        Panel.ZIndex="1"
+        Margin="16 0 0 0"
+        materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition
+              Width="Auto" />
+                                <ColumnDefinition
+              Width="*" />
+                                <ColumnDefinition
+              Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Button
+            Style="{StaticResource MaterialDesignToolButton}">
+                                <materialDesign:PackIcon
+              Kind="Search"
+              Opacity=".56" />
+                            </Button>
+                            <TextBox x:Name="search_txt"
+            Grid.Column="1"
+            Margin="8 0 0 0"
+            materialDesign:HintAssist.Hint=""
+            materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
+            BorderThickness="0"
+            MinWidth="200"
+            VerticalAlignment="Center" TextChanged="search_txt_TextChanged" />
+                            <Button
+            Style="{StaticResource MaterialDesignToolButton}"
+            Grid.Column="2"/>
+                        </Grid>
+                    </materialDesign:ColorZone>
+                    <Button
+        Style="{StaticResource MaterialDesignToolForegroundButton}"
+        Margin="8 0 0 0"
+        Panel.ZIndex="0"/>
+                </StackPanel>
+            </DockPanel>
+        </materialDesign:ColorZone>
+        <DataGrid x:Name="dataGird" AutoGenerateColumns="False" Margin="0,77,0,-77" Grid.RowSpan="2">
+            <DataGrid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="White" Offset="1"/>
+                    <GradientStop Color="#FF4DB6AC"/>
+                </LinearGradientBrush>
+            </DataGrid.Background>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Điều" FontFamily="serif" Width="60" Binding="{Binding Path= DIEU}"/>
+                <DataGridTextColumn Header="Nội dung điều" FontFamily="serif" Width="200" Binding="{Binding Path= NOIDUNGDIEU}"/>
+                <DataGridTextColumn Header="Khoản" Width="80" FontFamily="serif" Binding="{Binding Path= KHOAN}"/>
+                <DataGridTextColumn Header="Nội dung khoản" FontFamily="serif" Width="300" Binding="{Binding Path= NOIDUNGKHOAN}"/>
+                <DataGridTextColumn Header="Mức phạt dưới" FontFamily="serif" Width="140" Binding="{Binding Path= MUCPHATDUOI}"/>
+                <DataGridTextColumn Header="Mức phạt trên" FontFamily="serif" Width="140" Binding="{Binding Path= MUCPHATTREN}"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="add_btn" Content="Thêm" HorizontalAlignment="Left" Height="32" Margin="509,16,0,0" VerticalAlignment="Top" Width="92" Click="add_btn_Click" Background="#FF00BCD4"
+                Style="{StaticResource MaterialDesignRaisedButton}"
+                materialDesign:ShadowAssist.ShadowDepth="Depth3"  
+                materialDesign:ButtonAssist.CornerRadius="20"               
+                ToolTip="MaterialDesignRaisedDarkButton with Round Corners"/>
+        <Button x:Name="delete_btn" Content="Xóa" HorizontalAlignment="Left" Height="32" Margin="632,16,0,0" VerticalAlignment="Top" Width="92" Click="delete_btn_Click" Background="#FF00BCD4"
+                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                materialDesign:ShadowAssist.ShadowDepth="Depth3"  
+                materialDesign:ButtonAssist.CornerRadius="20"               
+                ToolTip="MaterialDesignRaisedDarkButton with Round Corners"/>
+        <Button x:Name="update_btn" Content="Sửa" HorizontalAlignment="Left" Height="32" Margin="752,16,0,0" VerticalAlignment="Top" Width="93" Click="update_btn_Click" Background="#FF00BCD4"
+                Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                materialDesign:ShadowAssist.ShadowDepth="Depth3"  
+                materialDesign:ButtonAssist.CornerRadius="20"               
+                ToolTip="MaterialDesignRaisedDarkButton with Round Corners"/>
+        <Button x:Name="close_btn" Content="Button"  Height="24" Width="24" BorderThickness="0" Margin="876,-1,0,660" Click="close_btn_Click" RenderTransformOrigin="7.375,-3.751">
+            <Button.Background>
+                <ImageBrush  ImageSource="D:\C#\Nhom6_BTL\Nhom6_BTL\close-circle.png" Stretch="None"></ImageBrush>
+            </Button.Background>
+        </Button>
+    </Grid>
+</Window>
